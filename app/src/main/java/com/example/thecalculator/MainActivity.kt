@@ -3,162 +3,102 @@ package com.example.thecalculator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.thecalculator.databinding.ActivityMainBinding
 import kotlinx.coroutines.processNextEventInCurrentThread
 import java.util.Stack
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     private var line: String = ""
     private val poliz: Stack<String> = Stack<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val root = binding.root
+        setContentView(root)
 
-    fun Drop(view: View)
-    {
-        drop_poliz(poliz)
-
-        line = " "
-        val txt: TextView = findViewById(R.id.Text_output)
-        txt.text = (" ")
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = " "
-    }
-
-    fun operator_eq(view: View)
-    {
-        val solutionView: TextView = findViewById(R.id.Text_output)
-        solutionView.text = equation(view, line, poliz)
-    }
-
-    fun operator_division(view: View)
-    {
-        line += " / "
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = line
-    }
-
-    fun operator_plus(view: View)
-    {
-        line += " + "
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = line
-    }
-
-    fun operator_multiplicate(view: View)
-    {
-        line += " * "
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = line
-    }
-
-    fun operator_minus(view: View)
-    {
-        line += " - "
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = line
-    }
-
-    fun operator_percent(view: View)
-    {
-        line += " % "
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = line
-    }
-
-    fun operator_plusminus(view: View)
-    {
-        line += " * -1"
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = line
-    }
-
-    fun operator_dot(view: View)
-    {
-        line += "."
-        val ln: TextView = findViewById(R.id.math_expression)
-        ln.text = line
-    }
-
-    fun Add_Number_0(view: View)
-    {
+        binding.button0.setOnClickListener{
             line += "0"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_1(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button1.setOnClickListener{
             line += "1"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_2(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button2.setOnClickListener{
             line += "2"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_3(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button3.setOnClickListener{
             line += "3"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_4(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button4.setOnClickListener{
             line += "4"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_5(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button5.setOnClickListener{
             line += "5"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_6(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button6.setOnClickListener{
             line += "6"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_7(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button7.setOnClickListener{
             line += "7"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_8(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button8.setOnClickListener{
             line += "8"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
-
-    fun Add_Number_9(view: View)
-    {
+            binding.mathExpression.setText(line)
+        }
+        binding.button9.setOnClickListener{
             line += "9"
-            val txt: TextView = findViewById<TextView>(R.id.math_expression)
-            txt.text = (line)
-    }
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonPlus.setOnClickListener{
+            line += " + "
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonMinus.setOnClickListener{
+            line += " - "
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonMultiplication.setOnClickListener{
+            line += " * "
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonDivision.setOnClickListener{
+            line += " / "
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonPercent.setOnClickListener{
+            line += " % "
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonPlusminus.setOnClickListener{
+            line += " * -1 "
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonDot.setOnClickListener{
+            line += "."
+            binding.mathExpression.setText(line)
+        }
+        binding.buttonAC.setOnClickListener{
+            line = ""
+            binding.mathExpression.setText(line)
+            drop_poliz(poliz)
+        }
+        binding.buttonEquation.setOnClickListener{
+            val answer: String = equation(root, line, poliz)
+            binding.solutionView.setText(answer)
+        }
 
-    fun String_delete(view: View)
-    {
-        line = line.dropLast(1)
-        line = line.dropLastWhile { it == ' ' }
-        val txt: TextView = findViewById<TextView>(R.id.math_expression)
-        txt.text = (line)
     }
 }
